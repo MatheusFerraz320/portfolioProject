@@ -1,126 +1,115 @@
 import { motion } from "framer-motion";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.3 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 70 } },
+};
+
 export default function About() {
   return (
     <div
       id="about"
-      className="w-screen min-h-screen bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f3460]
+      className="w-screen min-h-screen bg-gradient-to-r from-[#0d0d0d] via-[#1a1a1a] to-[#2c2c2c]
              text-white flex flex-col items-center px-6 py-20 font-[Montserrat]"
     >
       {/* Título */}
       <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="text-4xl font-bold mb-12 transition duration-300 hover:text-indigo-400 hover:scale-105"
+        className="text-4xl font-bold mb-12 hover:text-gray-300 hover:scale-105 transition"
       >
         Sobre Mim
       </motion.h2>
 
       {/* Foto + Texto */}
-      <div className="flex flex-col md:flex-row items-center gap-16 mb-16 max-w-5xl">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="flex flex-col md:flex-row items-center gap-16 mb-16 max-w-5xl"
+      >
         <motion.img
-          whileHover={{ scale: 1.1 }}
+          variants={item}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          whileHover={{ scale: 1.05, rotate: 1 }}
           src="/images/fotoMatheus.jpeg"
           alt="Foto de Matheus"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="w-80 h-80 rounded-full object-cover shadow-lg border-4 border-gray-600"
+          className="w-80 h-80 rounded-full object-cover shadow-lg border-4 border-gray-700"
         />
 
-        <div className="max-w-3xl text-lg md:text-xl leading-relaxed space-y-6 text-center md:text-left text-gray-200">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 1 }}
-          >
-            Sou um desenvolvedor web motivado e proativo, com 1 ano de experiência como
-            freelancer entregando projetos reais. Tenho habilidades em React.js, JavaScript,
-            HTML, CSS, Tailwind, Bootstrap e SQL, com foco em construir aplicações
-            responsivas e amigáveis ao usuário.
+        <motion.div
+          variants={container}
+          className="max-w-3xl text-lg md:text-xl leading-relaxed space-y-6 text-center md:text-left text-gray-300"
+        >
+          <motion.p variants={item}>
+            Meu nome é <span className="font-semibold">Matheus Ferraz</span>, tenho 25 anos e trago uma trajetória única: servi como <span className="border-b border-gray-500">Policial Militar em São Paulo por 6 anos</span>, sempre movido pela disciplina e dedicação. Paralelamente, mantive minha paixão por tecnologia, que me levou a ingressar na faculdade de <span className="italic">Análise e Desenvolvimento de Sistemas</span>.
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
-            Estou sempre disposto a aprender, me adaptar e crescer em ambientes dinâmicos,
-            trazendo habilidades de resolução de problemas, atenção aos detalhes e espírito
-            colaborativo.
+          <motion.p variants={item}>
+            Atuei em <span className="border-b border-gray-500">projetos freelancers</span> e colaborei com outros desenvolvedores, adquirindo experiência prática e entregando soluções completas. Já desenvolvi desde <span className="italic">landing pages responsivas com integração de pagamentos e foco em conversão</span>, até sistemas fullstack criados em equipe ou como parte de projetos acadêmicos.
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7, duration: 1 }}
-          >
-            Meu objetivo é me tornar um programador{" "}
-            <span className="font-semibold text-indigo-300">Fullstack</span>, contribuindo
-            para projetos impactantes enquanto expando continuamente minha expertise em
-            desenvolvimento web moderno.
+          <motion.p variants={item}>
+            Minha missão é <span className="border-b border-gray-500">transformar ideias em linhas de código</span> e entregar projetos impactantes, sempre buscando excelência, inovação e resultados reais para clientes e empresas.
           </motion.p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Cursos + Formação */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        variants={container}
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true }}
-        transition={{ delay: 0.9, duration: 1 }}
         className="max-w-5xl w-full grid md:grid-cols-2 gap-8 text-left"
       >
+        {/* Card 1 */}
         <motion.div
+          variants={item}
+          animate={{ y: [0, -8, 0], boxShadow: ["0 0 0 rgba(0,0,0,0)", "0 0 25px rgba(255,255,255,0.1)", "0 0 0 rgba(0,0,0,0)"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.05 }}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="bg-gradient-to-br from-gray-950 via-gray-800 to-gray-700 p-6 rounded-xl shadow-lg transition hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+          className="bg-gradient-to-br from-black via-gray-900 to-gray-700 p-6 rounded-xl shadow-lg"
         >
-          <h3 className="text-2xl font-semibold mb-4 text-indigo-300">Cursos</h3>
-          <ul className="space-y-3 list-disc list-inside text-gray-200">
+          <h3 className="text-2xl font-semibold mb-4 text-gray-200">Cursos</h3>
+          <ul className="space-y-3 list-disc list-inside text-gray-400">
             <li>
               <span className="font-semibold">Harvard University – edX</span> <br />
-              CS50x: Introduction to Computer Science <br />
-              Conclusão de todos os 10 problem sets e projeto final fullstack. <br />
-              Tópicos: Algoritmos, Estruturas de Dados, C, Python, SQL, Flask, HTML, CSS,
-              JavaScript.
+              CS50x: Introduction to Computer Science – projeto final fullstack.
             </li>
             <li>
               <span className="font-semibold">React.js – freeCodeCamp</span> <br />
-              Curso completo cobrindo fundamentos do React, componentes, gerenciamento de
-              estado, hooks e construção de aplicações interativas. <br />
-              Projetos práticos demonstrando interfaces responsivas e dinâmicas.
+              Curso completo com projetos práticos e interfaces responsivas.
             </li>
           </ul>
         </motion.div>
 
+        {/* Card 2 */}
         <motion.div
+          variants={item}
+          animate={{ y: [0, -8, 0], boxShadow: ["0 0 0 rgba(0,0,0,0)", "0 0 25px rgba(255,255,255,0.1)", "0 0 0 rgba(0,0,0,0)"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
           whileHover={{ scale: 1.05 }}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 1 }}
-          className="bg-gradient-to-br from-gray-950 via-gray-800 to-gray-700 p-6 rounded-xl shadow-lg transition hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+          className="bg-gradient-to-br from-black via-gray-900 to-gray-700 p-6 rounded-xl shadow-lg"
         >
-          <h3 className="text-2xl font-semibold mb-4 text-indigo-300">Formação Acadêmica</h3>
-          <ul className="space-y-3 list-disc list-inside text-gray-200">
+          <h3 className="text-2xl font-semibold mb-4 text-gray-200">Formação Acadêmica</h3>
+          <ul className="space-y-3 list-disc list-inside text-gray-400">
             <li>
-              <span className="font-semibold">
-                Tecnólogo em Análise e Desenvolvimento de Sistemas
-              </span>{" "}
-              <br />
-              Centro Universitário Leonardo da Vinci – 2º semestre em andamento. <br />
-              Conclusão prevista: 2027. <br />
-              (Equivalente a Associate Degree em TI/Computação, não bacharelado).
+              <span className="font-semibold">Tecnólogo em Análise e Desenvolvimento de Sistemas</span> <br />
+              Centro Universitário Leonardo da Vinci – em andamento, conclusão prevista 2027.
             </li>
           </ul>
         </motion.div>
