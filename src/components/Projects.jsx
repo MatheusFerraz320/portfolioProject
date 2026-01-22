@@ -6,13 +6,21 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
+        {
+      title: "Landing page para curso de idiomas",
+      technologies: "HTML, CSS, JavaScript, React.js, Tailwind, Node.js(integração com gateway de pagamento)",
+      description:
+        "Landing page para curso de idiomas, otimizada para SEO e performance, com código limpo e boas práticas.",
+      video: "/videos/languagePage.mp4",
+      codeLink: "Projeto comercial",
+    },
     {
       title: "Professional Websites / Landing Pages",
-      technologies: "HTML, CSS, JavaScript, React.js, Tailwind, Bootstrap",
+      technologies: "HTML, CSS, JavaScript, React.js, Tailwind",
       description:
-        "Sites profissionais e landing pages responsivas, otimizadas para SEO e performance, com código limpo e boas práticas.",
+        "Sites profissionais e landing pages responsivas, otimizadas para SEO e performance, com código limpo e boas práticas , icones direcionamento para conversão em redes sociais etc.",
       video: "/videos/landingPage.mp4",
-      codeLink: "https://github.com/seu-usuario/landing-pages",
+      codeLink: "Projeto comercial",
     },
     {
       title: "Currency Converter",
@@ -62,11 +70,18 @@ export default function Projects() {
     >
       {/* Título */}
       <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -50, scale: 0.8, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
         viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="text-5xl font-extrabold mb-16 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hover:"
+        transition={{ duration: 2, type: "spring", stiffness: 80 }}
+        className="
+          text-6xl font-extrabold mb-16 tracking-tight 
+          bg-clip-text text-transparent 
+          bg-gradient-to-r from-black via-gray-900 to-black
+          hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]
+          hover:tracking-widest
+          transition-all duration-700 ease-in-out
+  "
       >
         Portfolio
       </motion.h2>
