@@ -6,11 +6,27 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
-        {
+    {
+      title: "Email Classifier (IA) – Produtivo vs Improdutivo",
+      technologies:
+        "Python, FastAPI, Pydantic, IA Zero-Shot, HTML, Tailwind, JavaScript",
+      description:
+        "Aplicação full stack que utiliza Inteligência Artificial para classificar e-mails automaticamente em produtivos ou improdutivos. A API retorna categoria, score de confiança e resposta sugerida, com validações robustas e documentação via Swagger.",
+      features: [
+        "Classificação automática com IA Zero-Shot",
+        "Score de confiança e justificativa",
+        "Resposta sugerida automaticamente",
+        "Upload de arquivos .txt e .pdf",
+        "API documentada com Swagger (OpenAPI)",
+      ],
+      video: "/videos/emailClassifier.mp4", // ou troque por image se preferir
+      codeLink: "https://github.com/seu-usuario/email-classifier"
+    },
+    {
       title: "Landing page para curso de idiomas",
       technologies: "HTML, CSS, JavaScript, React.js, Tailwind, Node.js(integração com gateway de pagamento)",
       description:
-        "Landing page para curso de idiomas, otimizada para SEO e performance, com código limpo e boas práticas.",
+        "Landing page para curso de idiomas, otimizada para SEO e performance, gateway de pagamento / formSpree e calendly integrado , com código limpo e boas práticas.",
       video: "/videos/languagePage.mp4",
       codeLink: "Projeto comercial",
     },
