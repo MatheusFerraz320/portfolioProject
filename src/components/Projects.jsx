@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
+  //  Padroniza: todo projeto tem `videos` (array) OU `image` (string)
   const projects = [
     {
       title: "Email Classifier (IA) – Produtivo vs Improdutivo",
@@ -19,40 +20,38 @@ export default function Projects() {
         "Upload de arquivos .txt e .pdf",
         "API documentada com Swagger (OpenAPI)",
       ],
-      video: "/videos/emailClassifier.mp4", // ou troque por image se preferir
-      codeLink: "https://github.com/seu-usuario/email-classifier"
+      videos: ["/videos/emailClassifier.mp4"], 
+      codeLink: "https://github.com/seu-usuario/email-classifier",
     },
+
     {
-      title: "Landing page para curso de idiomas",
-      technologies: "HTML, CSS, JavaScript, React.js, Tailwind, Node.js(integração com gateway de pagamento)",
+      title: "Personal Tracker",
+      technologies:
+        "React.js, Tailwind CSS, Node.js (Express), PostgreSQL (Supabase), JWT, Bcrypt",
       description:
-        "Landing page para curso de idiomas, otimizada para SEO e performance, gateway de pagamento / formSpree e calendly integrado , com código limpo e boas práticas.",
-      video: "/videos/languagePage.mp4",
-      codeLink: "Projeto comercial",
+        "Sistema fullstack para gestão de aulas e treinos profissionais, desenvolvido para atender uma necessidade real de organização e controle de uma profissional de educação física. A aplicação permite gerenciamento completo de treinos, autenticação segura e persistência de dados em banco relacional em produção.",
+      features: [
+        "Autenticação segura com JWT",
+        "Criptografia de senhas com Bcrypt",
+        "Middleware de autorização para rotas privadas",
+        "Cadastro, listagem e exclusão de treinos",
+        "Relacionamento entre usuários e treinos (PostgreSQL)",
+        "API REST estruturada com separação clara de responsabilidades",
+        "Deploy em ambiente real (Frontend + Backend + Banco em nuvem)",
+      ],
+      videos: ["/videos/personalTracker.mp4"],
+      codeLink: "Projeto comercial (código privado).",
     },
+
     {
       title: "Professional Websites / Landing Pages",
       technologies: "HTML, CSS, JavaScript, React.js, Tailwind",
       description:
-        "Sites profissionais e landing pages responsivas, otimizadas para SEO e performance, com código limpo e boas práticas , icones direcionamento para conversão em redes sociais etc.",
-      video: "/videos/landingPage.mp4",
-      codeLink: "Projeto comercial",
+        "Sites profissionais e landing pages responsivas, otimizadas para SEO e performance, com código limpo e boas práticas.",
+      videos: ["/videos/landingPage.mp4", "/videos/languagePage.mp4"],
+      codeLink: "Projeto comercial (código privado).",
     },
-    {
-      title: "Currency Converter",
-      technologies: "HTML5, CSS3 + Bootstrap 5, JavaScript (ES6), Frankfurter API",
-      description:
-        "Conversor de moedas simples e responsivo, construído com HTML, CSS, JavaScript e a Frankfurter API.",
-      features: [
-        "Conversão de moedas em tempo real",
-        "Suporte para USD, BRL, EUR, JPY",
-        "Layout responsivo usando Bootstrap 5",
-        "Validação de entrada e mensagens de erro amigáveis",
-        "Exibição da data de conversão da API",
-      ],
-      image: "/images/currencyConverter.png",
-      codeLink: "https://github.com/seu-usuario/currency-converter",
-    },
+
     {
       title: "Habits Dashboard",
       technologies: "HTML, Bootstrap, JavaScript, Python (Flask), SQLite",
@@ -66,18 +65,31 @@ export default function Projects() {
         "Backend Python com Flask",
         "Banco de dados SQLite",
       ],
-      video : "/videos/healthyFlow.mp4",
+      videos: ["/videos/healthyFlow.mp4"],
       codeLink: "https://github.com/seu-usuario/habits-dashboard",
     },
+
     {
       title: "Gym System",
       technologies: "Node.js (Express), React, Tailwind, Full Stack",
       description:
-        "Sistema completo de academia em desenvolvimento, voltado para o gerenciamento de alunos, mensalidades e funcionários. O projeto é full stack, integrando um backend robusto em Node.js com Express, um frontend moderno em React + Tailwind e persistência de dados com SQLite. A solução busca oferecer uma plataforma escalável e intuitiva para controle administrativo, financeiro e operacional da academia. Ainda está em andamento, com novas funcionalidades sendo adicionadas continuamente.",
-      video: "/videos/gymSystem.mp4",
+        "Sistema completo de academia em desenvolvimento, voltado para o gerenciamento de alunos, mensalidades e funcionários.",
+      videos: ["/videos/gymSystem.mp4"],
       codeLink: "https://github.com/seu-usuario/gym-system",
     },
   ];
+
+  // CARD: pega o primeiro vídeo se existir, senão usa imagem
+  const getCardMedia = (project) => {
+    if (project.videos?.length) return { type: "video", src: project.videos[0] };
+    return { type: "image", src: project.image };
+  };
+
+  // MODAL: se tiver vídeos, retorna a lista; senão retorna uma lista com imagem
+  const getModalMedia = (project) => {
+    if (project.videos?.length) return project.videos.map((src) => ({ type: "video", src }));
+    return [{ type: "image", src: project.image }];
+  };
 
   return (
     <div
@@ -89,114 +101,125 @@ export default function Projects() {
         initial={{ opacity: 0, y: -50, scale: 0.8, filter: "blur(8px)" }}
         whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
         viewport={{ once: true }}
-        transition={{ duration: 2, type: "spring", stiffness: 80 }}
-        className="
-          text-6xl font-extrabold mb-16 tracking-tight 
-          bg-clip-text text-transparent 
-          bg-gradient-to-r from-black via-gray-900 to-black
-          hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]
-          hover:tracking-widest
-          transition-all duration-700 ease-in-out
-  "
+        transition={{ duration: 1.2, type: "spring", stiffness: 90 }}
+        className="text-6xl font-extrabold mb-16 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-900 to-black"
       >
         Portfolio
       </motion.h2>
 
-      {/* Grid de cards minimalistas */}
+      {/* Grid de cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.2, duration: 0.7 }}
-            whileHover={{ scale: 1.05 }}
-            onClick={() => setSelectedProject(project)}
-            className="cursor-pointer relative rounded-2xl overflow-hidden shadow-lg group"
-          >
-            {project.video ? (
-              <video
-                src={project.video}
-                className="object-cover h-80 w-full transition-transform duration-300 group-hover:scale-110"
-                muted
-                autoPlay
-                loop
-              />
-            ) : (
-              <img
-                src={project.image}
-                alt={project.title}
-                className="object-cover h-80 w-full transition-transform duration-300 group-hover:scale-110"
-              />
-            )}
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-              <h3 className="text-xl font-bold text-white">{project.title}</h3>
-            </div>
-          </motion.div>
-        ))}
+        {projects.map((project, index) => {
+          const media = getCardMedia(project);
+
+          return (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+              whileHover={{ scale: 1.04 }}
+              onClick={() => setSelectedProject(project)}
+              className="cursor-pointer relative rounded-2xl overflow-hidden shadow-lg group"
+            >
+              {media.type === "video" ? (
+                <video
+                  src={media.src}
+                  className="object-cover h-80 w-full transition-transform duration-300 group-hover:scale-110"
+                  muted
+                  autoPlay
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <img
+                  src={media.src}
+                  alt={project.title}
+                  className="object-cover h-80 w-full transition-transform duration-300 group-hover:scale-110"
+                />
+              )}
+
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <h3 className="text-xl font-bold text-white">{project.title}</h3>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)} 
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative"
+              onClick={(e) => e.stopPropagation()} // não fecha clicando dentro
             >
               {/* Botão fechar */}
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+                aria-label="Fechar modal"
               >
                 ✕
               </button>
 
-              {selectedProject.video ? (
-                <video
-                  src={selectedProject.video}
-                  controls
-                  className="rounded-xl mb-4 object-cover h-72 w-full shadow-md"
-                />
-              ) : (
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="rounded-xl mb-4 object-cover h-72 w-full shadow-md"
-                />
+              {/*  MODAL: renderiza todos os vídeos (ou imagem se não tiver) */}
+              {getModalMedia(selectedProject).map((m) =>
+                m.type === "video" ? (
+                  <video
+                    key={m.src}
+                    src={m.src}
+                    controls
+                    className="rounded-xl mb-4 object-cover h-72 w-full shadow-md"
+                  />
+                ) : (
+                  <img
+                    key={m.src}
+                    src={m.src}
+                    alt={selectedProject.title}
+                    className="rounded-xl mb-4 object-cover h-72 w-full shadow-md"
+                  />
+                )
               )}
 
               <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+
               <p className="text-sm italic mb-3 text-gray-600">
                 {selectedProject.technologies}
               </p>
+
               <p className="text-base leading-relaxed mb-4 text-gray-700">
                 {selectedProject.description}
               </p>
 
-              {selectedProject.features && (
+              {selectedProject.features?.length ? (
                 <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
                   {selectedProject.features.map((feat) => (
                     <li key={feat}>{feat}</li>
                   ))}
                 </ul>
-              )}
+              ) : null}
 
+              
               <a
                 href={selectedProject.codeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition"
+                className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition break-all"
               >
-                <FaGithub className="text-xl" /> Ver código no GitHub
+                <FaGithub className="text-xl" /> {selectedProject.codeLink}
               </a>
             </motion.div>
           </motion.div>
