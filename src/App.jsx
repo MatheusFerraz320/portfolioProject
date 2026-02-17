@@ -6,15 +6,17 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Footer  from './components/Footer'
 import Navbar from './components/NavBar'
+import SocialLinks from './components/SocialLinks'
 
 function App() {
   return (
     <div className="">
       <Navbar />
+      <SocialLinks />
       <Hero />
-      <About />
-      <Skills />
       <Projects />
+      <Skills />
+      <About />
       <Footer />
     </div>
   )
