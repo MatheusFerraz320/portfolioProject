@@ -64,7 +64,7 @@ export default function About() {
 
               <p>
                 Quando decidi migrar para a tecnologia, não foi apenas uma troca de carreira. 
-                Foi uma escolha consciente de construir algo novo com o mesmo comprometimento 
+                Foi uma escolha consciente de construir algo novo com o mesmo comprometimento e disciplina
                 que sempre levei para minha profissão.
               </p>
 
