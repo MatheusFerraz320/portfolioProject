@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaPlay, FaTimes, FaCheckCircle, FaLayerGroup } from "react-icons/fa";
+import { FaGithub, FaPlay, FaTimes, FaCheckCircle, FaLayerGroup } from "react-icons/fa";
 
 // ==========================================
 // CONFIGURAÇÃO & DADOS
 // ==========================================
-// Centralizei os projetos para facilitar a manutenção.
-// Adicionei tags para filtro e "featured" para destaque.
 
 const PROJECTS_DATA = [
   {
@@ -15,16 +13,18 @@ const PROJECTS_DATA = [
     category: "AI / Full-Stack",
     featured: true,
     technologies: ["Python", "FastAPI", "IA Zero-Shot", "React", "Tailwind"],
-    description: "Aplicação inteligente que classifica e-mails automaticamente em produtivos ou improdutivos utilizando IA Zero-Shot. Oferece score de confiança e sugestão de resposta.",
+    description:
+      "Aplicação inteligente que classifica e-mails automaticamente em produtivos ou improdutivos utilizando IA Zero-Shot. Oferece score de confiança e sugestão de resposta.",
     features: [
       "Classificação automática via IA",
       "Score de confiança e justificativa",
       "Sugestão de resposta automática",
-      "Upload de arquivos .txt e .pdf"
+      "Upload de arquivos .txt e .pdf",
     ],
     video: "/videos/emailClassifier.mp4",
+    poster: "/images/emailClassifier.png",
     codeLink: "https://github.com/seu-usuario/email-classifier",
-    gradient: "from-purple-500 to-indigo-500"
+    gradient: "from-purple-500 to-indigo-500",
   },
   {
     id: "personal-tracker",
@@ -32,50 +32,76 @@ const PROJECTS_DATA = [
     category: "Full-Stack",
     featured: true,
     technologies: ["React", "Node.js", "PostgreSQL", "JWT", "Tailwind"],
-    description: "Sistema de gestão para personal trainers. Permite controle total de alunos, treinos e pagamentos, com autenticação segura e banco de dados relacional.",
+    description:
+      "Sistema de gestão para personal trainers. Permite controle total de alunos, treinos e pagamentos, com autenticação segura e banco de dados relacional.",
     features: [
       "Autenticação JWT & Bcrypt",
-      "Gestão de Treinos e Alunos",
+      "Gestão de Treinos",
       "Banco de dados PostgreSQL",
-      "Deploy em produção"
+      "Deploy em produção",
     ],
     video: "/videos/personalTracker.mp4",
+    poster: "/images/personalTracker.png",
     codeLink: "Projeto Comercial",
-    gradient: "from-blue-500 to-cyan-500"
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     id: "gym-system",
     title: "Gym System",
     category: "Full-Stack",
-    featured: false,
+    featured: true,
     technologies: ["Node.js", "Express", "React", "Tailwind", "SQLite"],
-    description: "Sistema robusto para gerenciamento de academias, cobrindo mensalidades, fichas de treino e controle de acesso.",
+    description:
+      "Sistema robusto para gerenciamento de academias, cobrindo mensalidades, fichas de treino e controle de acesso.",
+    features: [
+      "Autenticação JWT & Bcrypt",
+      "Gestão de aluno , mensalidades , funcionarios",
+      "Banco de dados SQLITE projeto local",
+      "Deploy em produção",
+    ],
     video: "/videos/gymSystem.mp4",
+    poster: "/images/gymSystem.png",
     codeLink: "https://github.com/seu-usuario/gym-system",
-    gradient: "from-green-400 to-emerald-600"
+    gradient: "from-green-400 to-emerald-600",
   },
   {
     id: "websites",
     title: "Pro Websites / Landing Pages",
     category: "Front-end",
-    featured: false,
+    featured: true,
     technologies: ["React", "Tailwind", "SEO", "Performance"],
-    description: "Coleção de landing pages de alta conversão desenvolvidas para clientes, com foco em SEO, performance e design responsivo.",
+    description:
+      "Coleção de landing pages de alta conversão desenvolvidas para clientes, com foco em SEO, performance e design responsivo.",
+    features: [
+      "SEO otimizado para google.",
+      "formularios funcionais , tecnicas de funis , conversão total",
+      "Gateway de pagamentos",
+      "Deploy em produção",
+    ],
     video: "/videos/landingPage.mp4",
+    poster: "/images/landingPage.png",
     codeLink: "Projeto Comercial",
-    gradient: "from-orange-400 to-red-500"
+    gradient: "from-orange-400 to-red-500",
   },
   {
     id: "habits",
     title: "Habits Dashboard",
     category: "Full-Stack",
-    featured: false,
+    featured: true,
     technologies: ["Python (Flask)", "SQLite", "Bootstrap", "HTML/CSS"],
-    description: "Dashboard para rastreamento de hábitos diários. Projeto final do curso CS50x de Harvard, focado em lógica e persistência de dados.",
+    description:
+      "Dashboard para rastreamento de hábitos diários. Projeto final do curso CS50x de Harvard, focado em lógica e persistência de dados.",
+    features: [
+      "Autenticação JWT & Bcrypt",
+      "Gestão de habitos diarios",
+      "Banco de dados SQLITE projeto de estudo conclusão de curso harvard EDX cs50x",
+      "Deploy em produção",
+    ],
     video: "/videos/healthyFlow.mp4",
+    poster: "/images/healthyflow.png",
     codeLink: "https://github.com/seu-usuario/habits-dashboard",
-    gradient: "from-pink-500 to-rose-500"
-  }
+    gradient: "from-pink-500 to-rose-500",
+  },
 ];
 
 const CATEGORIES = ["Todos", "Full-Stack", "Front-end", "AI / Full-Stack"];
@@ -84,24 +110,23 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState("Todos");
 
-  // Filtra os projetos com base na categoria selecionada
-  const filteredProjects = PROJECTS_DATA.filter((project) => 
+  const filteredProjects = PROJECTS_DATA.filter((project) =>
     filter === "Todos" ? true : project.category === filter
   );
 
   return (
-    <section id="projects" className="relative w-full min-h-screen bg-neutral-950 text-gray-100 py-24 px-4 overflow-hidden font-sans">
-      
+    <section
+      id="projects"
+      className="relative w-full min-h-screen bg-neutral-950 text-gray-100 py-24 px-4 overflow-hidden font-sans"
+    >
       {/* BACKGROUND GLOW */}
-      {/* Adicionei 'blobs' de luz para dar profundidade ao fundo preto */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-900/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
         {/* HEADER */}
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -115,7 +140,6 @@ export default function Projects() {
         </div>
 
         {/* FILTROS */}
-        {/* Botões simples para filtrar a lista sem recarregar */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {CATEGORIES.map((cat) => (
             <button
@@ -149,20 +173,28 @@ export default function Projects() {
                 {/* Mídia do Card */}
                 <div className="relative h-60 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent z-10 opacity-80" />
-                  
-                  {project.video ? (
-                    <video
-                      src={project.video}
-                      muted loop playsInline
-                      onMouseOver={(e) => e.target.play()}
-                      onMouseOut={(e) => { e.target.pause(); e.target.currentTime = 0; }}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    />
+
+                  {/* THUMB */}
+                  {project.poster ? (
+                    <div className="relative w-full h-full">
+                      <img
+                        src={project.poster}
+                        alt={`${project.title} preview`}
+                        loading="lazy"
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                      {/* Overlay Play */}
+                      <div className="absolute inset-0 z-20 flex items-center justify-center">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/55 border border-white/15 backdrop-blur-md shadow-lg">
+                          <FaPlay className="text-white text-sm translate-x-[1px]" />
+                        </div>
+                      </div>
+                    </div>
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-br ${project.gradient}`} />
                   )}
 
-                  <div className="absolute top-4 right-4 z-20">
+                  <div className="absolute top-4 right-4 z-30">
                     <span className="text-xs font-bold px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-white shadow-lg">
                       {project.category}
                     </span>
@@ -174,19 +206,25 @@ export default function Projects() {
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">
                     {project.title}
                   </h3>
+
                   <p className="text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   {/* Tech Stack (Resumida) */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech) => (
-                      <span key={tech} className="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded border border-white/5">
+                      <span
+                        key={tech}
+                        className="text-xs text-gray-300 sm:text-gray-500 bg-white/5 px-2 py-1 rounded border border-white/5"
+                      >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-xs text-gray-600 px-2 py-1">+</span>
+                      <span className="text-xs text-gray-400 px-2 py-1">
+                        +{project.technologies.length - 3}
+                      </span>
                     )}
                   </div>
 
@@ -218,19 +256,23 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
               className="bg-neutral-900 border border-white/10 w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
             >
-              
               {/* Esquerda: Mídia */}
               <div className="w-full md:w-3/5 bg-black flex items-center justify-center relative group">
                 {selectedProject.video ? (
                   <video
                     src={selectedProject.video}
-                    controls autoPlay className="w-full h-full object-contain max-h-[50vh] md:max-h-full"
+                    poster={selectedProject.poster}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-contain max-h-[50vh] md:max-h-full"
                   />
                 ) : (
                   <div className={`w-full h-full bg-gradient-to-br ${selectedProject.gradient}`} />
                 )}
+
                 {/* Botão Fechar Mobile */}
-                <button 
+                <button
                   onClick={() => setSelectedProject(null)}
                   className="absolute top-4 right-4 md:hidden p-2 bg-black/50 rounded-full text-white z-50"
                 >
@@ -240,8 +282,8 @@ export default function Projects() {
 
               {/* Direita: Info */}
               <div className="w-full md:w-2/5 p-8 flex flex-col overflow-y-auto custom-scrollbar bg-neutral-900">
-                 {/* Botão Fechar Desktop */}
-                 <button 
+                {/* Botão Fechar Desktop */}
+                <button
                   onClick={() => setSelectedProject(null)}
                   className="hidden md:block self-end p-2 text-gray-400 hover:text-white transition-colors mb-4"
                 >
@@ -249,16 +291,16 @@ export default function Projects() {
                 </button>
 
                 <h3 className="text-2xl font-bold text-white mb-2">{selectedProject.title}</h3>
-                <span className="text-indigo-400 text-sm font-semibold mb-6 block">{selectedProject.category}</span>
+                <span className="text-indigo-400 text-sm font-semibold mb-6 block">
+                  {selectedProject.category}
+                </span>
 
-                <p className="text-gray-300 leading-relaxed mb-8 text-sm">
-                  {selectedProject.description}
-                </p>
+                <p className="text-gray-300 leading-relaxed mb-8 text-sm">{selectedProject.description}</p>
 
                 {selectedProject.features && (
                   <div className="mb-8">
                     <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
-                       <FaLayerGroup /> Destaques
+                      <FaLayerGroup /> Destaques
                     </h4>
                     <ul className="space-y-3">
                       {selectedProject.features.map((feature, i) => (
@@ -283,7 +325,6 @@ export default function Projects() {
                   </a>
                 </div>
               </div>
-
             </motion.div>
           </motion.div>
         )}
