@@ -61,30 +61,32 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-neutral-900 border-b border-white/10 overflow-hidden"
-          >
-            <ul className="flex flex-col items-center py-6 gap-6">
-              {links.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-lg font-medium text-gray-300 hover:text-white"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+{/* Mobile Menu Overlay */}
+<AnimatePresence>
+  {mobileMenuOpen && (
+    <motion.div
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.2 }}
+      className="md:hidden absolute top-full left-0 w-full bg-neutral-900 border-b border-white/10"
+    >
+      <ul className="flex flex-col items-center py-6 gap-6">
+        {links.map((link) => (
+          <li key={link.name}>
+            <a
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-lg font-medium text-gray-300 hover:text-white"
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  )}
+</AnimatePresence>
     </motion.nav>
   );
 }
