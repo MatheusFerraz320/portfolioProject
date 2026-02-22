@@ -25,7 +25,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`relative fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? "bg-black/60 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"
       }`}
     >
