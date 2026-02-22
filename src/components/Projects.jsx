@@ -23,7 +23,7 @@ const PROJECTS_DATA = [
     ],
     video: "/videos/emailClassifier.mp4",
     poster: "/images/emailClassifier.png",
-    codeLink: "https://github.com/seu-usuario/email-classifier",
+    codeLink: "https://github.com/MatheusFerraz320/email_classifier",
     gradient: "from-purple-500 to-indigo-500",
   },
   {
@@ -61,7 +61,7 @@ const PROJECTS_DATA = [
     ],
     video: "/videos/gymSystem.mp4",
     poster: "/images/gymSystem.png",
-    codeLink: "https://github.com/seu-usuario/gym-system",
+    codeLink: "https://github.com/MatheusFerraz320/gym-system",
     gradient: "from-green-400 to-emerald-600",
   },
   {
@@ -99,7 +99,7 @@ const PROJECTS_DATA = [
     ],
     video: "/videos/healthyFlow.mp4",
     poster: "/images/healthyflow.png",
-    codeLink: "https://github.com/seu-usuario/habits-dashboard",
+    codeLink: "https://github.com/MatheusFerraz320/Cs50x_ProjetoFinal_HealthyFlow",
     gradient: "from-pink-500 to-rose-500",
   },
 ];
