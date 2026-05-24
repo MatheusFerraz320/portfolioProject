@@ -1,6 +1,6 @@
 import type { Experience } from "@/types";
 
-export const experiences: Experience[] = [
+export const professionalExperiences: Experience[] = [
   {
     id: "b2-marketing",
     role: "Desenvolvedor Full Stack",
@@ -9,14 +9,14 @@ export const experiences: Experience[] = [
     type: "work",
     icon: "FaBriefcase",
     description: [
-      "Desenvolvimento de aplicações web e landing pages utilizando React.js e Next.js",
+      "Desenvolvimento de aplicações web e landing pages com React.js e Next.js",
       "Criação e consumo de APIs REST para integração com serviços externos",
-      "Modelagem e gerenciamento de banco de dados com PostgreSQL",
+      "Modelagem e gerenciamento de banco de dados PostgreSQL",
       "Implementação de autenticação e controle de acesso com JWT",
       "Customização e desenvolvimento de sites em WordPress",
-      "Otimização de performance e correção de bugs em ambiente de produção",
-      "Deploy e versionamento utilizando Git, GitHub e Vercel",
-      "Criação do sistema interno B2Hub, centralizando o fluxo de chamados de clientes realizado anteriormente via WhatsApp",
+      "Otimização de performance e correção de bugs em produção",
+      "Deploy e versionamento com Git, GitHub e Vercel",
+      "Criação do B2Hub — sistema interno que centralizou o fluxo de chamados antes feito via WhatsApp",
     ],
   },
   {
@@ -27,12 +27,11 @@ export const experiences: Experience[] = [
     type: "work",
     icon: "FaLaptopCode",
     description: [
-      "Correção e implementação de funcionalidades em aplicações React.js e Next.js",
-      "Atuação na resolução de bugs e manutenção de aplicações em produção",
+      "Correção e implementação de funcionalidades em React.js e Next.js",
+      "Manutenção de aplicações em produção e resolução de bugs",
       "Consumo e integração de APIs REST",
-      "Desenvolvimento de melhorias de interface e experiência do usuário",
-      "Suporte técnico em fluxos reativos e atualização dinâmica de componentes",
-      "Versionamento de código utilizando Git e Bitbucket",
+      "Melhorias de interface e experiência do usuário",
+      "Versionamento com Git e Bitbucket",
     ],
   },
   {
@@ -43,12 +42,26 @@ export const experiences: Experience[] = [
     type: "work",
     icon: "FaBug",
     description: [
-      "Testes e validação de APIs REST utilizando Postman",
+      "Testes e validação de APIs REST com Postman",
       "Identificação e documentação de bugs em frontend e backend",
       "Debugging e análise de logs para investigação de falhas",
-      "Escrita de scripts para automação de testes (básico)",
       "Testes funcionais e exploratórios focados em estabilidade e UX",
-      "Colaboração com desenvolvedores na melhoria da qualidade do código",
+      "Colaboração com devs na melhoria da qualidade do código",
+    ],
+  },
+];
+
+export const educationExperiences: Experience[] = [
+  {
+    id: "ads",
+    role: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+    company: "Centro Universitário Leonardo da Vinci",
+    period: "2025 — 2027",
+    type: "education",
+    icon: "FaGraduationCap",
+    description: [
+      "Formação superior em Análise e Desenvolvimento de Sistemas",
+      "Previsão de conclusão: junho de 2027",
     ],
   },
   {
@@ -59,8 +72,19 @@ export const experiences: Experience[] = [
     type: "education",
     icon: "FaGraduationCap",
     description: [
-      "Conclusão do curso de Ciência da Computação de Harvard com projeto final aprovado.",
-      "Fundamentos de algoritmos, estruturas de dados, C, Python, SQL e boas práticas de programação.",
+      "Conclusão do curso de Ciência da Computação de Harvard",
+      "Fundamentos de algoritmos, estruturas de dados, C, Python e SQL",
+    ],
+  },
+  {
+    id: "bootcamp-ia",
+    role: "Bootcamp de Inteligência Artificial",
+    company: "Bradesco",
+    period: "2024",
+    type: "education",
+    icon: "FaRobot",
+    description: [
+      "Bootcamp focado em fundamentos e aplicações de Inteligência Artificial",
     ],
   },
 ];

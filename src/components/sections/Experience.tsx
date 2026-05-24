@@ -1,22 +1,101 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaShieldAlt,
-  FaGraduationCap,
-  FaLaptopCode,
   FaBriefcase,
+  FaLaptopCode,
   FaBug,
+  FaGraduationCap,
+  FaChevronDown,
+  FaRobot,
 } from "react-icons/fa";
-import { experiences } from "@/data/experience";
+import { SiOpenai } from "react-icons/si";
+import {
+  professionalExperiences,
+  educationExperiences,
+} from "@/data/experience";
 
 const iconMap: Record<string, React.ReactNode> = {
-  FaBriefcase: <FaBriefcase className="text-cyan-400" size={20} />,
-  FaLaptopCode: <FaLaptopCode className="text-secondary" size={20} />,
-  FaBug: <FaBug className="text-red-400" size={20} />,
-  FaGraduationCap: <FaGraduationCap className="text-accent" size={20} />,
-  FaShieldAlt: <FaShieldAlt className="text-primary" size={20} />,
+  FaBriefcase: <FaBriefcase className="text-cyan-400" size={18} />,
+  FaLaptopCode: <FaLaptopCode className="text-secondary" size={18} />,
+  FaBug: <FaBug className="text-red-400" size={18} />,
+  FaGraduationCap: <FaGraduationCap className="text-accent" size={18} />,
+  FaRobot: <FaRobot className="text-yellow-400" size={18} />,
+  SiOpenai: <SiOpenai className="text-green-400" size={18} />,
 };
+
+function Card({
+  exp,
+  index,
+}: {
+  exp: (typeof professionalExperiences)[0];
+  index: number;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      className="group"
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full text-left bg-surface border border-border rounded-xl p-5 hover:border-white/20 transition-all duration-300"
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
+            {iconMap[exp.icon]}
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <span className="inline-block text-[11px] font-bold text-primary tracking-wider uppercase mb-1.5">
+              {exp.period}
+            </span>
+            <h3 className="text-base font-bold text-white mb-0.5">
+              {exp.role}
+            </h3>
+            <p className="text-sm text-text-secondary">{exp.company}</p>
+          </div>
+
+          <FaChevronDown
+            className={`text-text-muted mt-1.5 transition-transform duration-300 flex-shrink-0 ${
+              open ? "rotate-180" : ""
+            }`}
+            size={14}
+          />
+        </div>
+
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <ul className="mt-4 pt-4 border-t border-border space-y-2">
+                {exp.description.map((desc, i) => (
+                  <li
+                    key={i}
+                    className="text-sm text-text-secondary leading-relaxed flex items-start gap-2"
+                  >
+                    <span className="text-primary mt-1.5 flex-shrink-0 block w-1 h-1 rounded-full bg-primary" />
+                    {desc}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </button>
+    </motion.div>
+  );
+}
 
 export default function Experience() {
   return (
@@ -24,9 +103,9 @@ export default function Experience() {
       id="experience"
       className="w-full py-24 relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto relative z-10 px-4">
+      <div className="max-w-6xl mx-auto relative z-10 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +113,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent mb-4">
-            Experiência
+            Trajetória
           </h2>
           <p className="text-text-secondary max-w-xl mx-auto">
             Da disciplina militar à construção de soluções digitais — uma
@@ -42,57 +121,38 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-accent md:-translate-x-px" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent" />
+              <span className="text-sm font-bold text-white tracking-wider uppercase">
+                Profissional
+              </span>
+              <div className="h-px flex-1 bg-gradient-to-l from-primary/50 to-transparent" />
+            </div>
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-              className={`relative flex flex-col md:flex-row gap-6 md:gap-12 mb-16 last:mb-0 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              <div className="hidden md:flex md:w-1/2" />
+            <div className="space-y-4">
+              {professionalExperiences.map((exp, i) => (
+                <Card key={exp.id} exp={exp} index={i} />
+              ))}
+            </div>
+          </div>
 
-              <div className="absolute left-4 md:left-1/2 w-8 h-8 -translate-x-1/2 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10">
-                {iconMap[exp.icon]}
-              </div>
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent" />
+              <span className="text-sm font-bold text-white tracking-wider uppercase">
+                Educação
+              </span>
+              <div className="h-px flex-1 bg-gradient-to-l from-accent/50 to-transparent" />
+            </div>
 
-              <div
-                className={`ml-12 md:ml-0 md:w-1/2 ${
-                  index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
-                }`}
-              >
-                <span className="inline-block text-xs font-bold text-primary mb-2 tracking-wider uppercase">
-                  {exp.period}
-                </span>
-                <h3 className="text-xl font-bold text-white mb-1">
-                  {exp.role}
-                </h3>
-                <p className="text-sm text-text-secondary font-medium mb-4">
-                  {exp.company}
-                </p>
-                <ul
-                  className={`space-y-2 ${
-                    index % 2 === 0 ? "md:flex md:flex-col md:items-end" : ""
-                  }`}
-                >
-                  {exp.description.map((desc, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-text-secondary leading-relaxed"
-                    >
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
+            <div className="space-y-4">
+              {educationExperiences.map((exp, i) => (
+                <Card key={exp.id} exp={exp} index={i} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
