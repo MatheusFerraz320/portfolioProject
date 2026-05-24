@@ -17,6 +17,10 @@ import {
   SiTypescript,
   SiNextdotjs,
   SiDocker,
+  SiExpress,
+  SiMysql,
+  SiWordpress,
+  SiCypress,
 } from "react-icons/si";
 import { skills } from "@/data/skills";
 import type { Skill } from "@/types";
@@ -34,8 +38,12 @@ const iconMap: Record<string, React.ReactNode> = {
   SiFastapi: <SiFastapi className="text-teal-400 text-5xl" />,
   FaDatabase: <FaDatabase className="text-gray-400 text-5xl" />,
   SiPostgresql: <SiPostgresql className="text-blue-300 text-5xl" />,
+  SiMysql: <SiMysql className="text-blue-400 text-5xl" />,
   FaGitAlt: <FaGitAlt className="text-orange-600 text-5xl" />,
   SiDocker: <SiDocker className="text-blue-400 text-5xl" />,
+  SiExpress: <SiExpress className="text-gray-300 text-5xl" />,
+  SiWordpress: <SiWordpress className="text-blue-400 text-5xl" />,
+  SiCypress: <SiCypress className="text-green-400 text-5xl" />,
 };
 
 export default function Skills() {

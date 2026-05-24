@@ -69,16 +69,20 @@ export default function About() {
               </p>
 
               <p>
-                Hoje já desenvolvi e desenvolvo aplicações full stack,
-                estruturando APIs, modelando bancos de dados e criando
-                interfaces que resolvem problemas reais. Já entreguei soluções
-                completas do zero, com autenticação segura, arquitetura
-                organizada e deploy em produção.
+                Atualmente atuo como <strong className="text-white">Desenvolvedor Full Stack na B2 Marketing Industrial</strong>,
+                desenvolvendo aplicações web com React.js e Next.js, criando e consumindo
+                APIs REST, modelando bancos PostgreSQL e mantendo sistemas em produção.
+                Também atuo na <strong className="text-white">Inside the Box</strong> como
+                <strong className="text-white"> Frontend Developer</strong> e
+                <strong className="text-white"> Quality Assurance</strong>, onde trabalho com
+                correção de bugs, testes de API com Postman e melhoria contínua de qualidade.
               </p>
 
               <p>
-                Não me preocupo apenas em fazer funcionar. Me preocupo em fazer
-                bem feito, com clareza, segurança e estrutura para crescer.
+                Já entreguei soluções completas do zero, como o <strong className="text-white">B2Hub</strong> —
+                um sistema interno de gestão de chamados que substituiu o fluxo via WhatsApp
+                na B2 Marketing. Também construí classificador de e-mails com IA,
+                sistemas SaaS com autenticação JWT, e landing pages de alta conversão.
               </p>
             </div>
           </motion.div>

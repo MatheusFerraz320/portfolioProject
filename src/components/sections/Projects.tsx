@@ -77,19 +77,25 @@ export default function Projects() {
                 <div className="relative h-60 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-80" />
 
-                  <div className="relative w-full h-full">
-                    <img
-                      src={project.poster}
-                      alt={`${project.title} preview`}
-                      loading="lazy"
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 z-20 flex items-center justify-center">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/55 border border-white/15 backdrop-blur-md">
-                        <FaPlay className="text-white text-sm translate-x-[1px]" />
+                  {project.poster ? (
+                    <div className="relative w-full h-full">
+                      <img
+                        src={project.poster}
+                        alt={`${project.title} preview`}
+                        loading="lazy"
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 z-20 flex items-center justify-center">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/55 border border-white/15 backdrop-blur-md">
+                          <FaPlay className="text-white text-sm translate-x-[1px]" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
+                      <span className="text-4xl font-bold text-white/30 select-none">{project.title.charAt(0)}</span>
+                    </div>
+                  )}
 
                   <div className="absolute top-4 right-4 z-30">
                     <span className="text-xs font-bold px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-white">

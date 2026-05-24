@@ -2,6 +2,25 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    id: "b2hub",
+    title: "B2Hub — Gestão de Chamados",
+    category: "Full-Stack",
+    featured: true,
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "JWT"],
+    description:
+      "Sistema full stack interno para gestão de chamados de clientes. Centraliza o fluxo antes realizado via WhatsApp, com dashboards para clientes e funcionários, upload de imagens e autenticação por perfil de usuário.",
+    features: [
+      "Dashboards para clientes e funcionários",
+      "Controle de chamados com atualização de status e logs",
+      "Upload de imagens e autenticação por perfil",
+      "API integrada utilizando Next.js Full Stack (API Routes)",
+    ],
+    video: "",
+    poster: "",
+    codeLink: "Projeto Comercial",
+    gradient: "from-cyan-500 to-blue-600",
+  },
+  {
     id: "email-classifier",
     title: "Email Classifier (IA)",
     category: "AI / Full-Stack",

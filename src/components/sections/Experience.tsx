@@ -5,13 +5,17 @@ import {
   FaShieldAlt,
   FaGraduationCap,
   FaLaptopCode,
+  FaBriefcase,
+  FaBug,
 } from "react-icons/fa";
 import { experiences } from "@/data/experience";
 
 const iconMap: Record<string, React.ReactNode> = {
-  FaShieldAlt: <FaShieldAlt className="text-primary" size={20} />,
-  FaGraduationCap: <FaGraduationCap className="text-accent" size={20} />,
+  FaBriefcase: <FaBriefcase className="text-cyan-400" size={20} />,
   FaLaptopCode: <FaLaptopCode className="text-secondary" size={20} />,
+  FaBug: <FaBug className="text-red-400" size={20} />,
+  FaGraduationCap: <FaGraduationCap className="text-accent" size={20} />,
+  FaShieldAlt: <FaShieldAlt className="text-primary" size={20} />,
 };
 
 export default function Experience() {
@@ -30,7 +34,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent mb-4">
-            Trajetória
+            Experiência
           </h2>
           <p className="text-text-secondary max-w-xl mx-auto">
             Da disciplina militar à construção de soluções digitais — uma
