@@ -82,7 +82,7 @@ export const educationExperiences: Experience[] = [
     company: "Bradesco",
     period: "2024",
     type: "education",
-    icon: "FaRobot",
+    icon: "SiOpenai",
     description: [
       "Bootcamp focado em fundamentos e aplicações de Inteligência Artificial",
     ],

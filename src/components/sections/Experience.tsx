@@ -52,9 +52,6 @@ function Card({
           </div>
 
           <div className="flex-1 min-w-0">
-            <span className="inline-block text-[11px] font-bold text-primary tracking-wider uppercase mb-1.5">
-              {exp.period}
-            </span>
             <h3 className="text-base font-bold text-white mb-0.5">
               {exp.role}
             </h3>
