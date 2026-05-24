@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
@@ -9,6 +10,11 @@ import {
   FaPython,
   FaDatabase,
   FaGitAlt,
+  FaChevronDown,
+  FaCode,
+  FaServer,
+  FaLayerGroup,
+  FaWrench,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -45,14 +51,49 @@ const iconMap: Record<string, React.ReactNode> = {
   SiCypress: <SiCypress className="text-green-400 text-4xl" />,
 };
 
-const categories: { label: string; key: string; color: string }[] = [
-  { label: "Frontend", key: "frontend", color: "border-primary/30" },
-  { label: "Backend", key: "backend", color: "border-secondary/30" },
-  { label: "Banco de Dados", key: "database", color: "border-accent/30" },
-  { label: "Ferramentas", key: "tools", color: "border-white/10" },
+const categories: {
+  label: string;
+  key: string;
+  icon: React.ReactNode;
+  gradient: string;
+  countDesc: string;
+}[] = [
+  {
+    label: "Frontend",
+    key: "frontend",
+    icon: <FaCode className="text-primary" size={18} />,
+    gradient: "from-primary/10 to-transparent",
+    countDesc: "Tecnologias de interface e experiência do usuário",
+  },
+  {
+    label: "Backend",
+    key: "backend",
+    icon: <FaServer className="text-secondary" size={18} />,
+    gradient: "from-secondary/10 to-transparent",
+    countDesc: "APIs, servidores e lógica de negócio",
+  },
+  {
+    label: "Banco de Dados",
+    key: "database",
+    icon: <FaLayerGroup className="text-accent" size={18} />,
+    gradient: "from-accent/10 to-transparent",
+    countDesc: "Armazenamento e modelagem de dados",
+  },
+  {
+    label: "Ferramentas",
+    key: "tools",
+    icon: <FaWrench className="text-text-muted" size={18} />,
+    gradient: "from-white/5 to-transparent",
+    countDesc: "DevOps, versionamento e produtividade",
+  },
 ];
 
 export default function Skills() {
+  const [openCat, setOpenCat] = useState<string | null>(null);
+
+  const toggle = (key: string) =>
+    setOpenCat((prev) => (prev === key ? null : key));
+
   return (
     <section
       id="skills"
@@ -60,7 +101,7 @@ export default function Skills() {
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10 w-full px-4">
+      <div className="max-w-3xl mx-auto relative z-10 w-full px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,57 +114,93 @@ export default function Skills() {
           <div className="h-1 w-20 bg-primary mx-auto rounded-full" />
         </motion.div>
 
-        <div className="space-y-12">
-          {categories.map((cat, catIndex) => {
+        <div className="space-y-3">
+          {categories.map((cat) => {
             const filtered = skills.filter((s) => s.category === cat.key);
+            const isOpen = openCat === cat.key;
 
             return (
-              <motion.div
+              <div
                 key={cat.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: catIndex * 0.1 }}
+                className="rounded-2xl border border-border overflow-hidden transition-all duration-300"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`h-0.5 w-6 rounded-full ${cat.color.replace("border-", "bg-")}`} />
-                  <span className="text-xs font-bold text-text-muted uppercase tracking-[0.15em]">
-                    {cat.label}
-                  </span>
-                  <div className="h-px flex-1 bg-border" />
-                </div>
+                <button
+                  onClick={() => toggle(cat.key)}
+                  className={`w-full flex items-center gap-4 p-5 text-left transition-all duration-300 bg-surface hover:bg-surface-hover ${
+                    isOpen ? "border-b border-border" : ""
+                  }`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                    {cat.icon}
+                  </div>
 
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-                  {filtered.map((skill, index) => (
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-bold text-white">
+                      {cat.label}
+                    </span>
+                    <p className="text-xs text-text-muted mt-0.5">
+                      {isOpen ? "Clique para recolher" : cat.countDesc}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-text-muted font-medium tabular-nums">
+                      {filtered.length}{" "}
+                      {filtered.length === 1 ? "item" : "itens"}
+                    </span>
+                    <FaChevronDown
+                      className={`text-text-muted transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                      size={14}
+                    />
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
                     <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        delay: (catIndex * filtered.length + index) * 0.03,
-                        duration: 0.4,
-                      }}
-                      whileHover={{
-                        scale: 1.05,
-                        borderColor: "rgba(255,255,255,0.3)",
-                      }}
-                      className="flex flex-col items-center justify-center p-4 rounded-xl bg-white/5 border border-border backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="overflow-hidden"
                     >
-                      <div className="mb-2.5 group-hover:scale-110 transition-transform duration-300">
-                        {iconMap[skill.icon] || (
-                          <span className="text-4xl text-white font-bold">
-                            ?
-                          </span>
-                        )}
+                      <div className="p-5 pt-0">
+                        <div className="pt-5 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                          {filtered.map((skill, index) => (
+                            <motion.div
+                              key={skill.name}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{
+                                delay: index * 0.04,
+                                duration: 0.3,
+                              }}
+                              whileHover={{
+                                scale: 1.05,
+                                borderColor: "rgba(255,255,255,0.3)",
+                              }}
+                              className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white/5 border border-border backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group"
+                            >
+                              <div className="mb-2 group-hover:scale-110 transition-transform duration-300">
+                                {iconMap[skill.icon] || (
+                                  <span className="text-4xl text-white font-bold">
+                                    ?
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs font-medium text-text-secondary group-hover:text-white transition-colors text-center leading-tight">
+                                {skill.name}
+                              </p>
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
-                      <p className="text-xs font-medium text-text-secondary group-hover:text-white transition-colors text-center leading-tight">
-                        {skill.name}
-                      </p>
                     </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             );
           })}
         </div>
