@@ -14,6 +14,7 @@ import { SiOpenai } from "react-icons/si";
 import {
   professionalExperiences,
   educationExperiences,
+  languages,
 } from "@/data/experience";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -149,6 +150,46 @@ export default function Experience() {
                 <Card key={exp.id} exp={exp} index={i} />
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent" />
+            <span className="text-sm font-bold text-white tracking-wider uppercase">
+              Idiomas
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-l from-primary/50 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {languages.map((lang, i) => (
+              <motion.div
+                key={lang.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="bg-surface border border-border rounded-xl p-5 hover:border-white/20 transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-2xl">{lang.flag}</span>
+                  <span className="text-xs font-bold text-primary">
+                    {lang.level}
+                  </span>
+                </div>
+                <p className="text-sm font-bold text-white mb-3">{lang.name}</p>
+                <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${lang.percentage}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

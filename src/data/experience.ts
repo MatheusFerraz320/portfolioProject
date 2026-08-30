@@ -1,52 +1,49 @@
-import type { Experience } from "@/types";
+import type { Experience, Language } from "@/types";
 
 export const professionalExperiences: Experience[] = [
   {
-    id: "b2-marketing",
-    role: "Desenvolvedor Full Stack",
-    company: "B2 Marketing Industrial",
-    period: "2025 — Atual",
-    type: "work",
-    icon: "FaBriefcase",
-    description: [
-      "Desenvolvimento de aplicações web e landing pages com React.js e Next.js",
-      "Criação e consumo de APIs REST para integração com serviços externos",
-      "Modelagem e gerenciamento de banco de dados PostgreSQL",
-      "Implementação de autenticação e controle de acesso com JWT",
-      "Customização e desenvolvimento de sites em WordPress",
-      "Otimização de performance e correção de bugs em produção",
-      "Deploy e versionamento com Git, GitHub e Vercel",
-      "Criação do B2Hub — sistema interno que centralizou o fluxo de chamados antes feito via WhatsApp",
-    ],
-  },
-  {
-    id: "frontend-itb",
-    role: "Frontend Developer Júnior",
+    id: "itb-fullstack",
+    role: "Fullstack Developer",
     company: "Inside the Box",
-    period: "2026 — Atual",
+    period: "Jun 2026 — Atual",
     type: "work",
     icon: "FaLaptopCode",
     description: [
-      "Correção e implementação de funcionalidades em React.js e Next.js",
-      "Manutenção de aplicações em produção e resolução de bugs",
-      "Consumo e integração de APIs REST",
-      "Melhorias de interface e experiência do usuário",
-      "Versionamento com Git e Bitbucket",
+      "Desenvolvimento e correção de funcionalidades em React.js, React Native e Next.js com TypeScript e APIs em Nest.js, entregando mais de 20 features/correções em produção",
+      "Debugging avançado e análise de causa raiz, reduzindo em cerca de 30% o tempo médio de resolução de bugs críticos",
+      "Refatoração de componentes React, reduzindo a duplicação de código em ~25% e melhorando a performance de renderização",
+      "Aplicação de boas práticas e código limpo (componentização, tipagem estrita em TypeScript, revisão via Pull Requests)",
+      "Consumo e integração de APIs REST construídas em Express.js e Nest.js",
+      "Atuação em time ágil com Scrum — sprint planning, daily stand-ups, sprint review e retrospectivas — com gestão em board Kanban (Jira/Trello)",
     ],
   },
   {
-    id: "qa-itb",
+    id: "itb-qa",
     role: "Quality Assurance Engineer Júnior",
     company: "Inside the Box",
-    period: "2026 — Atual",
+    period: "Mar 2026 — Mai 2026",
     type: "work",
     icon: "FaBug",
     description: [
-      "Testes e validação de APIs REST com Postman",
-      "Identificação e documentação de bugs em frontend e backend",
-      "Debugging e análise de logs para investigação de falhas",
-      "Testes funcionais e exploratórios focados em estabilidade e UX",
-      "Colaboração com devs na melhoria da qualidade do código",
+      "Testes e validação de mais de 40 endpoints de APIs REST com Postman; identificação e documentação de 25+ bugs em frontend e backend",
+      "Debugging e análise de logs para investigação de falhas; automação básica de testes funcionais e exploratórios",
+      "Colaboração direta com times de desenvolvimento em fluxo Scrum, priorizando bugs e tarefas de teste em board Kanban",
+      "Base técnica de QA que impulsionou a promoção para Fullstack Developer em menos de 3 meses",
+    ],
+  },
+  {
+    id: "b2-marketing",
+    role: "Desenvolvedor Full Stack Estagiário",
+    company: "B2 Marketing Industrial",
+    period: "2025 — 2026",
+    type: "work",
+    icon: "FaBriefcase",
+    description: [
+      "Desenvolvimento de aplicações web e landing pages em React.js/Next.js, com APIs REST em Nest.js e Express.js e autenticação JWT, elevando a taxa de conversão em cerca de 15%",
+      "Modelagem e gerenciamento de banco de dados com PostgreSQL; otimização de performance e deploy via Git/Vercel",
+      "Aplicação de boas práticas de código limpo (SOLID, componentização e separação de responsabilidades)",
+      "Organização de demandas e priorização de tarefas com quadro Kanban, aumentando a previsibilidade de entregas",
+      "Destaque: criação do sistema interno B2Hub, centralizando mais de 100 chamados/mês antes feitos via WhatsApp e reduzindo o tempo médio de atendimento em ~40%",
     ],
   },
 ];
@@ -55,13 +52,14 @@ export const educationExperiences: Experience[] = [
   {
     id: "ads",
     role: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-    company: "Centro Universitário Leonardo da Vinci",
+    company: "Centro Universitário Leonardo da Vinci (UNIASSELVI)",
     period: "2025 — 2027",
     type: "education",
     icon: "FaGraduationCap",
     description: [
       "Formação superior em Análise e Desenvolvimento de Sistemas",
       "Previsão de conclusão: junho de 2027",
+      "Extensão universitária (149h): desenvolvimento em Next.js de plataforma de conscientização e apoio contra violência doméstica",
     ],
   },
   {
@@ -74,6 +72,7 @@ export const educationExperiences: Experience[] = [
     description: [
       "Conclusão do curso de Ciência da Computação de Harvard",
       "Fundamentos de algoritmos, estruturas de dados, C, Python e SQL",
+      "Projeto final: Habits Dashboard — sistema de rastreamento de hábitos diários",
     ],
   },
   {
@@ -86,5 +85,32 @@ export const educationExperiences: Experience[] = [
     description: [
       "Bootcamp focado em fundamentos e aplicações de Inteligência Artificial",
     ],
+  },
+];
+
+export const languages: Language[] = [
+  {
+    name: "Português",
+    level: "Nativo",
+    flag: "🇧🇷",
+    percentage: 100,
+  },
+  {
+    name: "Inglês",
+    level: "Avançado",
+    flag: "🇺🇸",
+    percentage: 80,
+  },
+  {
+    name: "Espanhol",
+    level: "Intermediário",
+    flag: "🇪🇸",
+    percentage: 55,
+  },
+  {
+    name: "Italiano",
+    level: "Intermediário",
+    flag: "🇮🇹",
+    percentage: 50,
   },
 ];
