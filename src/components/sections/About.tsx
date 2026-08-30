@@ -68,7 +68,7 @@ export default function About() {
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500" />
             <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-surface">
               <img
-                src="/images/fotoMatheus.jpeg"
+                src="/images/about.jpeg"
                 alt="Matheus Ferraz"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
               />
