@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaChevronDown, FaDownload } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -59,14 +59,6 @@ export default function Hero() {
             className="px-8 py-4 bg-transparent border border-white/20 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300"
           >
             Sobre Mim
-          </a>
-          <a
-            href="/curriculo-matheus-ferraz.pdf"
-            target="_blank"
-            className="px-8 py-4 bg-transparent border border-primary/40 text-primary font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all duration-300 flex items-center justify-center gap-2"
-          >
-            <FaDownload size={14} />
-            Currículo
           </a>
         </motion.div>
       </div>

@@ -1,13 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaDownload, FaArrowRight } from "react-icons/fa";
+import {
+  FaShieldAlt,
+  FaQuoteLeft,
+  FaGraduationCap,
+  FaCode,
+} from "react-icons/fa";
 
-const stats = [
-  { value: "2+", label: "Anos em Tech" },
-  { value: "5+", label: "Projetos Entregues" },
-  { value: "2", label: "Empresas" },
-  { value: "3", label: "Tecnologias Domínio" },
+const milestones = [
+  {
+    icon: <FaShieldAlt className="text-cyan-400" />,
+    step: "PMSP",
+    period: "Antes de 2023",
+    title: "A Base: Polícia Militar",
+    text: "Anos de serviço na Polícia Militar de São Paulo. A rotina exigia disciplina, resiliência, tomada de decisão sob pressão e trabalho em equipe — valores que carrego até hoje dentro de cada sprint.",
+  },
+  {
+    icon: <FaGraduationCap className="text-accent" />,
+    step: "CS50x",
+    period: "2023 – 2024",
+    title: "O Ponto de Virada: a Chama da Programação",
+    text: "Durante a transição, encontrei a Ciência da Computação. Concluí o CS50x de Harvard — algoritmos, estruturas de dados, C, Python e SQL — e me apaixonei pela lógica de transformar problemas em soluções.",
+  },
+  {
+    icon: <FaCode className="text-primary" />,
+    step: "Full-Stack",
+    period: "2025 – Hoje",
+    title: "Construindo a Carreira de Dev",
+    text: "Ingressei em Análise e Desenvolvimento de Sistemas (UNIASSELVI) e entrei no mercado. Hoje atuo como full-stack em todo o ciclo: APIs, autenticação JWT, arquitetura de componentes e bancos relacionais até o deploy em produção.",
+  },
 ];
 
 export default function About() {
@@ -28,10 +50,14 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-500 bg-clip-text text-transparent mb-6">
             Sobre Mim
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
+            Da disciplina militar à engenharia de software — uma história de
+            propósito, coragem e aprendizado contínuo.
+          </p>
+          <div className="h-1 w-24 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6" />
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: -50 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
@@ -67,68 +93,84 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-1 text-center lg:text-left"
           >
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
               De Policial Militar a{" "}
               <span className="text-primary">Desenvolvedor Full-Stack</span>
             </h3>
 
+            <div className="relative mb-8">
+              <FaQuoteLeft className="text-primary/30 text-3xl absolute top-0 left-0" />
+              <p className="text-text-secondary leading-relaxed max-w-xl lg:max-w-none mx-auto lg:mx-0 text-lg italic pl-10">
+                Eu não troquei um uniforme por um teclado — eu levei comigo o
+                que ele me ensinou. A mesma disciplina que me manteve firme no
+                quartel é a que hoje me faz escrever código com
+                responsabilidade, resiliência e visão de impacto real.
+              </p>
+            </div>
+
             <p className="text-text-secondary mb-8 leading-relaxed max-w-xl lg:max-w-none mx-auto lg:mx-0">
-              Minha trajetória é construída sobre{" "}
-              <strong className="text-white">disciplina</strong>,{" "}
-              <strong className="text-white">resiliência</strong> e{" "}
-              <strong className="text-white">vontade de aprender</strong>. Dos
-              anos na Polícia Militar de São Paulo ao desenvolvimento de
-              soluções digitais completas — cada etapa me preparou para entregar
-              código de qualidade com responsabilidade e visão de impacto real.
+              Da Polícia Militar de São Paulo ao full-stack, construí uma base
+              sólida: hoje atuo em todo o ciclo de desenvolvimento — modelagem
+              de API, autenticação JWT, arquitetura de componentes e bancos
+              relacionais até o deploy em produção — sempre em times ágeis
+              (Scrum/Kanban), com foco em qualidade de código, debugging
+              avançado e melhoria contínua de performance.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
-              {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"].map(
-                (tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                )
-              )}
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="text-center p-3 rounded-xl bg-surface border border-border"
+              {[
+                "React",
+                "Next.js",
+                "Nest.js",
+                "TypeScript",
+                "Node.js",
+                "PostgreSQL",
+                "Prisma",
+              ].map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full"
                 >
-                  <span className="block text-xl font-bold text-white">
-                    {stat.value}
-                  </span>
-                  <span className="text-[11px] text-text-muted">
-                    {stat.label}
-                  </span>
-                </div>
+                  {tech}
+                </span>
               ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <a
-                href="#contact"
-                className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
-              >
-                Entrar em Contato <FaArrowRight size={12} />
-              </a>
-              <a
-                href="/curriculo-matheus-ferraz.pdf"
-                target="_blank"
-                className="px-6 py-3 bg-transparent border border-primary/40 text-primary font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 text-sm"
-              >
-                <FaDownload size={14} />
-                Download Currículo
-              </a>
             </div>
           </motion.div>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {milestones.map((m, i) => (
+            <motion.div
+              key={m.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              className="relative bg-surface border border-border rounded-2xl p-7 hover:border-white/20 hover:shadow-[0_0_40px_rgba(0,0,0,0.4)] transition-all duration-500 group"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  {m.icon}
+                </div>
+                <span className="text-xs font-bold text-text-muted uppercase tracking-wider">
+                  {m.period}
+                </span>
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-primary-light transition-colors">
+                {m.title}
+              </h3>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {m.text}
+              </p>
+
+              <div className="absolute top-6 right-6 text-xs font-bold text-primary/40">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
