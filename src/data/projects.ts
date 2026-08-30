@@ -2,23 +2,44 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    id: "b2hub",
-    title: "B2Hub — Gestão de Chamados",
+    id: "workflow",
+    title: "Workflow — Gestão de Projetos",
     category: "Full-Stack",
     featured: true,
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "JWT"],
+    technologies: ["React", "Nest.js", "Prisma", "TypeScript", "Spec-Driven"],
     description:
-      "Sistema full stack interno para gestão de chamados de clientes. Centraliza o fluxo antes realizado via WhatsApp, com dashboards para clientes e funcionários, upload de imagens e autenticação por perfil de usuário.",
+      "Plataforma full stack para gestão de fluxos de trabalho, construída com React no front e Nest.js no back, seguindo os princípios de Spec-Driven Development para garantir APIs documentadas e previsíveis.",
     features: [
-      "Dashboards para clientes e funcionários",
-      "Controle de chamados com atualização de status e logs",
-      "Upload de imagens e autenticação por perfil",
-      "API integrada utilizando Next.js Full Stack (API Routes)",
+      "Frontend em React com TypeScript e Vite",
+      "Backend em Nest.js com arquitetura modular",
+      "Modelagem de dados com Prisma ORM",
+      "Desenvolvimento orientado a specs (Spec-Driven Development)",
     ],
-    video: "",
-    poster: "",
-    codeLink: "Projeto Comercial",
+    poster:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80",
+    codeLink: "https://github.com/MatheusFerraz320/Workflow-web",
+    backLink: "https://github.com/MatheusFerraz320/workFlow-api",
     gradient: "from-cyan-500 to-blue-600",
+  },
+  {
+    id: "architect-flow",
+    title: "Architect Flow — Gestão de Projetos",
+    category: "Full-Stack",
+    featured: true,
+    technologies: ["Next.js", "Nest.js", "Prisma", "PostgreSQL", "JWT"],
+    description:
+      "Portal full stack para arquitetos organizarem projetos e compartilharem o andamento com clientes, substituindo fluxos manuais via WhatsApp e e-mail. Backend em arquitetura em camadas com controle de acesso por papéis.",
+    features: [
+      "Backend Nest.js com Layered Architecture e JWT via cookie httpOnly",
+      "Controle de acesso por papéis (arquiteto/cliente)",
+      "Modelagem relacional em PostgreSQL via Prisma ORM",
+      "Frontend Next.js/TypeScript com Shadcn/ui",
+    ],
+    poster:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
+    codeLink: "https://github.com/MatheusFerraz320/arq-flow-web",
+    backLink: "https://github.com/MatheusFerraz320/arq-flow",
+    gradient: "from-purple-500 to-indigo-500",
   },
   {
     id: "email-classifier",
@@ -34,7 +55,6 @@ export const projects: Project[] = [
       "Sugestão de resposta automática",
       "Upload de arquivos .txt e .pdf",
     ],
-    video: "/videos/emailClassifier.mp4",
     poster: "/images/emailClassifier.png",
     codeLink: "https://github.com/MatheusFerraz320/email_classifier",
     gradient: "from-purple-500 to-indigo-500",
@@ -53,68 +73,35 @@ export const projects: Project[] = [
       "Banco de dados PostgreSQL",
       "Deploy em produção",
     ],
-    video: "/videos/personalTracker.mp4",
     poster: "/images/personalTracker.png",
     codeLink: "https://github.com/MatheusFerraz320/Personal-Tracker",
     gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    id: "gym-system",
-    title: "Gym System",
-    category: "Full-Stack",
-    featured: true,
-    technologies: ["Node.js", "Express", "React", "Tailwind", "SQLite"],
-    description:
-      "Sistema robusto para gerenciamento de academias, cobrindo mensalidades, fichas de treino e controle de acesso.",
-    features: [
-      "Autenticação JWT & Bcrypt",
-      "Gestão de aluno, mensalidades, funcionarios",
-      "Banco de dados SQLITE projeto local",
-      "Deploy em produção",
-    ],
-    video: "/videos/gymSystem.mp4",
-    poster: "/images/gymSystem.png",
-    codeLink: "https://github.com/MatheusFerraz320/gym-system",
-    gradient: "from-green-400 to-emerald-600",
   },
   {
     id: "websites",
     title: "Pro Websites / Landing Pages",
     category: "Front-end",
     featured: true,
-    technologies: ["React", "Tailwind", "SEO", "Performance"],
-    description:
-      "Coleção de landing pages de alta conversão desenvolvidas para clientes, com foco em SEO, performance e design responsivo.",
-    features: [
-      "SEO otimizado para google.",
-      "formularios funcionais, tecnicas de funis, conversão total",
-      "Gateway de pagamentos",
-      "Deploy em produção",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "SEO",
+      "Responsividade",
     ],
-    video: "/videos/landingPage.mp4",
-    poster: "/images/landingPage.png",
+    description:
+      "Landing pages e websites de alta conversão, com foco em SEO, performance de carregamento e design 100% responsivo para diferentes dispositivos.",
+    features: [
+      "SEO otimizado para Google",
+      "Layout totalmente responsivo (mobile-first)",
+      "Alta performance e velocidade de carregamento",
+      "Foco em conversão e funis de vendas",
+    ],
+    poster:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     codeLink: "Projeto Comercial",
     gradient: "from-orange-400 to-red-500",
-  },
-  {
-    id: "habits",
-    title: "Habits Dashboard",
-    category: "Full-Stack",
-    featured: true,
-    technologies: ["Python (Flask)", "SQLite", "Bootstrap", "HTML/CSS"],
-    description:
-      "Dashboard para rastreamento de hábitos diários. Projeto final do curso CS50x de Harvard, focado em lógica e persistência de dados.",
-    features: [
-      "Autenticação JWT & Bcrypt",
-      "Gestão de habitos diarios",
-      "Banco de dados SQLITE projeto de estudo conclusão de curso harvard EDX cs50x",
-      "Deploy em produção",
-    ],
-    video: "/videos/healthyFlow.mp4",
-    poster: "/images/healthyflow.png",
-    codeLink:
-      "https://github.com/MatheusFerraz320/Cs50x_ProjetoFinal_HealthyFlow",
-    gradient: "from-pink-500 to-rose-500",
   },
 ];
 

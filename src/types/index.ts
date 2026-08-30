@@ -6,10 +6,17 @@ export interface Project {
   technologies: string[];
   description: string;
   features: string[];
-  video: string;
   poster: string;
   codeLink: string;
+  backLink?: string;
   gradient: string;
+}
+
+export interface Language {
+  name: string;
+  level: string;
+  flag: string;
+  percentage: number;
 }
 
 export interface Skill {

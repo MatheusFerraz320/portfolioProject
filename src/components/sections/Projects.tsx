@@ -4,10 +4,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaGithub,
-  FaPlay,
   FaTimes,
   FaCheckCircle,
   FaLayerGroup,
+  FaArrowRight,
 } from "react-icons/fa";
 import { projects, categories } from "@/data/projects";
 
@@ -85,11 +85,6 @@ export default function Projects() {
                         loading="lazy"
                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 z-20 flex items-center justify-center">
-                        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/55 border border-white/15 backdrop-blur-md">
-                          <FaPlay className="text-white text-sm translate-x-[1px]" />
-                        </div>
-                      </div>
                     </div>
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
@@ -130,7 +125,7 @@ export default function Projects() {
                   </div>
 
                   <div className="flex items-center gap-2 text-primary text-sm font-medium group-hover:translate-x-1 transition-transform">
-                    Ver detalhes <FaPlay className="text-[10px]" />
+                    Ver detalhes <FaArrowRight className="text-[10px]" />
                   </div>
                 </div>
               </motion.div>
@@ -155,20 +150,22 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
               className="bg-surface border border-border w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
             >
-              <div className="w-full md:w-3/5 bg-black flex items-center justify-center relative">
-                {selectedProject.video ? (
-                  <video
-                    src={selectedProject.video}
-                    poster={selectedProject.poster}
-                    controls
-                    autoPlay
-                    playsInline
-                    className="w-full h-full object-contain max-h-[50vh] md:max-h-full"
+              <div className="w-full md:w-3/5 bg-black relative flex items-center justify-center">
+                {selectedProject.poster ? (
+                  <img
+                    src={selectedProject.poster}
+                    alt={`${selectedProject.title}`}
+                    className="w-full h-full object-cover max-h-[50vh] md:max-h-full"
                   />
                 ) : (
-                  <div
-                    className={`w-full h-full bg-gradient-to-br ${selectedProject.gradient}`}
-                  />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div
+                      className={`w-full h-full bg-gradient-to-br ${selectedProject.gradient}`}
+                    />
+                    <span className="absolute text-8xl font-bold text-white/20 select-none">
+                      {selectedProject.title.charAt(0)}
+                    </span>
+                  </div>
                 )}
 
                 <button
@@ -220,18 +217,50 @@ export default function Projects() {
                   </div>
                 )}
 
-                <div className="mt-auto pt-6 border-t border-border">
-                  <a
-                    href={selectedProject.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-colors"
-                  >
-                    <FaGithub size={20} />
-                    {selectedProject.codeLink.includes("http")
-                      ? "Ver Código"
-                      : "Projeto Comercial"}
-                  </a>
+                <div className="mt-auto pt-6 border-t border-border space-y-3">
+                  {selectedProject.codeLink.includes("http") ||
+                  selectedProject.backLink ? (
+                    <>
+                      <a
+                        href={selectedProject.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-colors"
+                      >
+                        <FaGithub size={20} />
+                        {selectedProject.backLink
+                          ? "Ver Código (Front-end)"
+                          : "Ver Código"}
+                      </a>
+                      {selectedProject.backLink && (
+                        <a
+                          href={selectedProject.backLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full bg-transparent border border-white/20 text-white font-bold py-3 rounded-lg hover:bg-white/10 transition-colors"
+                        >
+                          <FaGithub size={20} />
+                          Ver Código (Back-end)
+                        </a>
+                      )}
+                    </>
+                  ) : (
+                    <div>
+                      <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <FaLayerGroup /> Stacks & Foco
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs text-text-secondary bg-white/5 px-2.5 py-1.5 rounded border border-border"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
