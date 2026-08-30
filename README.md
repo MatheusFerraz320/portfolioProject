@@ -52,7 +52,7 @@ Desenvolvido com **Next.js 15**, **TypeScript** e **Tailwind CSS 4**, o foco est
 ## Seções
 
 - **Hero** — Apresentação com gradientes animados e CTA
-- **Projetos** — Grid responsivo com filtros por categoria e modal de detalhes com vídeos
+- **Projetos** — Grid responsivo com filtros por categoria e modal de detalhes com descrição e links para o GitHub
 - **Skills** — Tecnologias e ferramentas do dia a dia
 - **Experiência** — Timeline interativa mostrando a transição PMSP → Dev
 - **Sobre** — História completa da migração de carreira
