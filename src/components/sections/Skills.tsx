@@ -11,8 +11,9 @@ import {
   FaDatabase,
   FaGitAlt,
   FaChevronDown,
-  FaCode,
+  FaGithub,
   FaServer,
+  FaCode,
   FaLayerGroup,
   FaWrench,
 } from "react-icons/fa";
@@ -27,6 +28,10 @@ import {
   SiMysql,
   SiWordpress,
   SiCypress,
+  SiPostman,
+  SiJira,
+  SiTrello,
+  SiJest,
 } from "react-icons/si";
 import { skills } from "@/data/skills";
 
@@ -49,6 +54,12 @@ const iconMap: Record<string, React.ReactNode> = {
   SiExpress: <SiExpress className="text-gray-300 text-4xl" />,
   SiWordpress: <SiWordpress className="text-blue-400 text-4xl" />,
   SiCypress: <SiCypress className="text-green-400 text-4xl" />,
+  FaServer: <FaServer className="text-red-400 text-4xl" />,
+  FaGithub: <FaGithub className="text-white text-4xl" />,
+  SiPostman: <SiPostman className="text-orange-400 text-4xl" />,
+  SiJest: <SiJest className="text-red-400 text-4xl" />,
+  SiJira: <SiJira className="text-blue-400 text-4xl" />,
+  SiTrello: <SiTrello className="text-sky-400 text-4xl" />,
 };
 
 const categories: {
